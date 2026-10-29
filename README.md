@@ -1,45 +1,36 @@
-# Shop-Api
+# Shop-API
 
-ASP.NET Core 10 Web API for an online shop, built with Clean Architecture and CQRS.
+ASP.NET Core 10 Web API for an online shop, built with **Clean Architecture** and **CQRS**.
 
 ## Demo
 
-[https://github.com/user-attachments/assets/YOUR-VIDEO-ID](https://github.com/user-attachments/assets/2f7bbe18-20bf-48b3-b460-190a1bad6bd7)
+[Watch Demo](https://github.com/user-attachments/assets/2f7bbe18-20bf-48b3-b460-190a1bad6bd7)
 
-## Technologies & Features
+## Key Features
 
-- ASP.NET Core 10
-- Clean Architecture
-- RESTful Web API
-- Entity Framework Core with Fluent API
-- CQRS and Mediator
-- Serilog
-- Authentication and Authorization
-- ASP.NET Core Identity (Users and Roles)
-- Dependency Injection
-- AutoMapper
+- Clean Architecture & CQRS
+- RESTful API Development
+- Entity Framework Core & Fluent API
+- Authentication & Role-Based Authorization
+- ASP.NET Core Identity
+- Pagination
+- Unit & Integration Testing
 - FluentValidation
-- Swagger and Postman API Documentation
+- AutoMapper & Dependency Injection
+- Serilog Logging
+- Swagger & Postman API Documentation
 
-## Entities
+## Core Entities
 
-- Product
-- Category
-- Cart
-- Order
-- Identity User
-- Role
+Product, Category, Cart, Order, User & Role
 
 ## Test Accounts
 
 **Admin**
-- Username: `admin@gmail.com`
+- Email: `admin@gmail.com`
 - Password: `Test123?`
 
 **User**
-- Username: `user@gmail.com`
+- Email: `user@gmail.com`
 - Password: `Test123?`
-
-
-
 
