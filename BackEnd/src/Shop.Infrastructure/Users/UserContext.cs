@@ -1,6 +1,6 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Shop.Application.Users;
+using System.Security.Claims;
 
 namespace Shop.Infrastructure.Users;
 

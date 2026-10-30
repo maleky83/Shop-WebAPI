@@ -1,9 +1,9 @@
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Constants;
 using Shop.Application.Repositories;
 using Shop.Domain.Entities.Catalog;
 using Shop.Infrastructure.Persistence;
+using System.Linq.Expressions;
 
 namespace Shop.Infrastructure.Repositories;
 
@@ -18,18 +18,19 @@ internal class ProductRepository(ShopDbContext dbContext) : IProductRepository
 
     public async Task<(IEnumerable<Product>, int)> GetAllMatchingAsync(
         string? searchPhrase,
-        int pageSize,
-        int pageNumber,
+        int? pageSize,
+        int? pageNumber,
         string? sortBy,
-        SortDirection sortDirection
-        )
+        SortDirection sortDirection)
     {
         var searchPhraseLower = searchPhrase?.ToLower();
 
-        IQueryable<Product> baseQuery = dbContext.Products
-            .Where(p => searchPhraseLower == null ||
-                p.Name.ToLower().Contains(searchPhraseLower) ||
-                p.Description.ToLower().Contains(searchPhraseLower));
+        var baseQuery = dbContext
+            .Products
+            .Where(
+                r => searchPhraseLower == null
+                || r.Name.ToLower().Contains(searchPhraseLower)
+                || r.Description.ToLower().Contains(searchPhraseLower));
 
         if (sortBy != null)
         {
@@ -48,14 +49,19 @@ internal class ProductRepository(ShopDbContext dbContext) : IProductRepository
                 : baseQuery.OrderByDescending(selectedColumn);
         }
 
-        var itemsCount = await baseQuery.CountAsync();
+        var totalCount = await baseQuery.CountAsync();
 
-        IEnumerable<Product> products = await baseQuery
-            .Skip(pageSize * (pageNumber - 1))
-            .Take(pageSize)
+        if (pageSize.HasValue && pageNumber.HasValue)
+        {
+            baseQuery = baseQuery
+                .Skip(pageSize.Value * (pageNumber.Value - 1))
+                .Take(pageSize.GetValueOrDefault());
+        }
+
+        var products = await baseQuery
             .ToListAsync();
 
-        return (products, itemsCount);
+        return (products, totalCount);
     }
 
     public async Task<Product?> GetByIdAsync(int id)

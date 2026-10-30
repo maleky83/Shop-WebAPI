@@ -1,9 +1,9 @@
 using Serilog;
-using Shop.Api.Extensions;
+using Shop.Api;
 using Shop.Api.Middlewares;
-using Shop.Application.Extensions;
+using Shop.Application;
 using Shop.Domain.Entities;
-using Shop.Infrastructure.Extensions;
+using Shop.Infrastructure;
 using Shop.Infrastructure.Seeders;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

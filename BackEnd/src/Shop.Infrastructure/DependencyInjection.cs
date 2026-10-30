@@ -15,9 +15,9 @@ using Shop.Infrastructure.Repositories.Shopping;
 using Shop.Infrastructure.Seeders;
 using Shop.Infrastructure.Users;
 
-namespace Shop.Infrastructure.Extensions;
+namespace Shop.Infrastructure;
 
-public static class ServiceCollectionExtensions
+public static class DependencyInjection
 {
     public static void AddInfrastrucure(this IServiceCollection services, IConfiguration configuration)
     {

@@ -1,7 +1,7 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Shop.Domain.Entities;
+using System.Security.Claims;
 
 namespace Shop.Infrastructure.Authorization;
 

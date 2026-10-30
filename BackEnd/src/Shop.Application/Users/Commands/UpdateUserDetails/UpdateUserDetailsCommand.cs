@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 
 namespace Shop.Application.Users.Commands.UpdateUserDetails;
 

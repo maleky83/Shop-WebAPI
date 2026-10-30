@@ -5,16 +5,16 @@ namespace Shop.Application.Repositories;
 
 public interface IProductRepository
 {
-    public Task<Product> AddAsync(Product entity);
-    public Task DeleteAsync(Product entity);
-    public Task<IEnumerable<Product>> GetAllAsync();
-    public Task<(IEnumerable<Product>, int)> GetAllMatchingAsync(
+    Task<Product> AddAsync(Product entity);
+    Task DeleteAsync(Product entity);
+    Task<IEnumerable<Product>> GetAllAsync();
+    Task<(IEnumerable<Product>, int)> GetAllMatchingAsync(
         string? searchPhrase,
-        int pageSize,
-        int pageNumber,
+        int? pageSize,
+        int? pageNumber,
         string? sortBy,
         SortDirection sortDirection
         );
-    public Task<Product?> GetByIdAsync(int id);
-    public Task SaveChangesAsync();
+    Task<Product?> GetByIdAsync(int id);
+    Task SaveChangesAsync();
 }

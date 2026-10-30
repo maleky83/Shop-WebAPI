@@ -14,16 +14,22 @@ public class GetAllProductsQueryValidator : AbstractValidator<GetAllProductsQuer
 
     public GetAllProductsQueryValidator()
     {
-        RuleFor(p => p.PageNumber)
+        RuleFor(r => r.PageNumber)
             .GreaterThanOrEqualTo(1);
 
-        RuleFor(p => p.PageSize)
-            .Must(value => AllowPageSizes.Contains(value))
+        RuleFor(x => x)
+        .Must(x => x.PageSize.HasValue == x.PageNumber.HasValue)
+        .WithMessage("PageSize and PageNumber must be provided together.");
+
+
+        RuleFor(r => r.PageSize)
+            .Must(value => AllowPageSizes.Contains(value.GetValueOrDefault()))
+            .When(value => value.PageSize.HasValue)
             .WithMessage($"Page size must be in [{string.Join(",", AllowPageSizes)}]");
 
-        RuleFor(p => p.SortBy)
+        RuleFor(r => r.SortBy)
             .Must(value => AllowSortByColumnNames.Contains(value?.ToLower()))
-            .When(value => value.SortBy != null)
+            .When(r => r.SortBy != null)
             .WithMessage(
                 $"Sort by is optional, or must be in [{string.Join(",", AllowSortByColumnNames)}]");
     }

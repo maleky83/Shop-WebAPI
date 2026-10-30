@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Shop.Domain.Entities;
@@ -14,13 +14,13 @@ public class AssignUserRoleCommandHandler(
 {
     public async Task Handle(AssignUserRoleCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Assigning user role {@Request}", request);
+        logger.LogInformation("Assigning user role: {@Request}", request);
 
-        User user = await userManager.FindByEmailAsync(request.UserEmail)
+        var user = await userManager.FindByEmailAsync(request.UserEmail)
             ?? throw new NotFoundException(nameof(User), request.UserEmail);
 
-        IdentityRole role = await roleManager.FindByNameAsync(request.UserRole)
-            ?? throw new NotFoundException(nameof(IdentityRole), request.UserRole);
+        var role = await roleManager.FindByNameAsync(request.RoleName)
+            ?? throw new NotFoundException(nameof(IdentityRole), request.RoleName);
 
         await userManager.AddToRoleAsync(user, role.Name!);
     }

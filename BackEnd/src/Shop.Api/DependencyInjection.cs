@@ -2,9 +2,9 @@ using Microsoft.OpenApi;
 using Serilog;
 using Shop.Api.Middlewares;
 
-namespace Shop.Api.Extensions;
+namespace Shop.Api;
 
-public static class WebApplicationBuilderExtensions
+public static class DependencyInjection
 {
     public static void AddPresentation(this WebApplicationBuilder builder)
     {

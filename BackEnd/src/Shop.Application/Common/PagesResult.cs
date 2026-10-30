@@ -2,12 +2,17 @@ namespace Shop.Application.Common;
 
 public class PagedResult<T>
 {
-    public PagedResult(IEnumerable<T> items, int totalItemsCount, int pageSize, int pageNumber)
+    public PagedResult(
+        IEnumerable<T> items, int totalItemsCount, int? pageSize, int? pageNumber)
     {
         Items = items;
         TotalItemsCount = totalItemsCount;
-        TotalPages = (int)Math.Ceiling(totalItemsCount / (double)pageSize);
-        ItemsFrom = (pageSize * (pageNumber - 1)) + 1;
+        TotalPages = pageSize.HasValue
+            ?
+            (int)Math.Ceiling(totalItemsCount / (double)pageSize.GetValueOrDefault())
+            :
+            1;
+        ItemsFrom = (pageSize.GetValueOrDefault() * (pageNumber.GetValueOrDefault() - 1)) + 1;
         ItemsTo = ItemsFrom + items.Count() - 1;
     }
     public IEnumerable<T> Items { get; set; }

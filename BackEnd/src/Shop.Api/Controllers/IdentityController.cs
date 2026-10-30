@@ -28,7 +28,7 @@ public class IdentityController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("userRole")]
-    public async Task<IActionResult> UnAssignUserRole(UnAssignUserRoleCommand command)
+    public async Task<IActionResult> UnAssignUserRole(UnassignUserRoleCommand command)
     {
         await mediator.Send(command);
         return NoContent();
