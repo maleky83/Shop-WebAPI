@@ -8,8 +8,4 @@
     <Project Path="src/Shop.Domain/Shop.Domain.csproj" />
     <Project Path="src/Shop.Infrastructure/Shop.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/Shop.Api.Tests/Shop.Api.Tests.csproj" />
-    <Project Path="tests/Shop.Application.Tests/Shop.Application.Tests.csproj" />
-  </Folder>
 </Solution>

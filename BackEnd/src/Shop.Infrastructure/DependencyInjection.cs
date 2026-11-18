@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Interfaces;
-using Shop.Application.Repositories;
-using Shop.Application.Repositories.Shopping;
+using Shop.Application.Interfaces.Repositories;
+using Shop.Application.Interfaces.Repositories.Shopping;
 using Shop.Application.Users;
 using Shop.Domain.Entities;
 using Shop.Infrastructure.Authorization;
@@ -19,7 +19,7 @@ namespace Shop.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void AddInfrastrucure(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("ShopDb");
         var connectionStringHost = configuration.GetConnectionString("HostDb");

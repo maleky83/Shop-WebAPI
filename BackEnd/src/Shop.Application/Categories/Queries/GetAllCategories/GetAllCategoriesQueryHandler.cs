@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Shop.Application.Categories.Dtos;
-using Shop.Application.Repositories;
+using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
 
 namespace Shop.Application.Categories.Queries.GetAllCategories;

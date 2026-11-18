@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Shop.Application.Carts.Dtos;
-using Shop.Application.Repositories.Shopping;
+using Shop.Application.Interfaces.Repositories.Shopping;
 using Shop.Domain.Entities.Carts;
 using Shop.Domain.Exceptions;
 

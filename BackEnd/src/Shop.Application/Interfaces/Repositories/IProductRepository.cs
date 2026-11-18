@@ -1,7 +1,7 @@
 using Shop.Application.Constants;
 using Shop.Domain.Entities.Catalog;
 
-namespace Shop.Application.Repositories;
+namespace Shop.Application.Interfaces.Repositories;
 
 public interface IProductRepository
 {

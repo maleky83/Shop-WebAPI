@@ -1,6 +1,6 @@
 using Shop.Domain.Entities.Carts;
 
-namespace Shop.Application.Repositories.Shopping;
+namespace Shop.Application.Interfaces.Repositories.Shopping;
 
 public interface ICartRepository
 {

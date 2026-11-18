@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Shop.Application.Repositories.Shopping;
+using Shop.Application.Interfaces.Repositories.Shopping;
 using Shop.Domain.Entities.Carts;
 using Shop.Infrastructure.Persistence;
 

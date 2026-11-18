@@ -8,5 +8,5 @@ public class CreateUserCommand : IRequest
     public string Password { get; set; } = string.Empty;
     public string? Nationality { get; set; }
     public DateOnly DateOfBirth { get; set; }
-    public IEnumerable<string>? UserRoles { get; set; }
+    public IEnumerable<string>? Roles { get; set; }
 }

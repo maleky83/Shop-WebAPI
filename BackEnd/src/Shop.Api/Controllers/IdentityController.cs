@@ -10,7 +10,7 @@ namespace Shop.Api.Controllers;
 
 [Route("identity")]
 [ApiController]
-[Authorize(Roles = UserRoles.Admin)]
+[Authorize]
 public class IdentityController(IMediator mediator) : ControllerBase
 {
     [HttpPatch("user")]
@@ -21,6 +21,7 @@ public class IdentityController(IMediator mediator) : ControllerBase
     }
 
     [HttpPatch("userRole")]
+    [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
     {
         await mediator.Send(command);

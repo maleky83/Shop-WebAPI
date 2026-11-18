@@ -34,9 +34,9 @@ public class CreateUserCommandHandler(
 
         result.ThrowIfFailed();
 
-        if (request.UserRoles != null && request.UserRoles.Any())
+        if (request.Roles != null && request.Roles.Any())
         {
-            var roleResult = await userManager.AddToRolesAsync(user, request.UserRoles);
+            var roleResult = await userManager.AddToRolesAsync(user, request.Roles);
 
             roleResult.ThrowIfFailed();
         }

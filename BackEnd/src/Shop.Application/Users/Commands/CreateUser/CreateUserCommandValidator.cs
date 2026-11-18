@@ -11,10 +11,12 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
         RuleFor(u => u.Email)
             .NotEmpty();
 
-        RuleFor(u => u.UserRoles)
+        RuleFor(u => u.Roles)
             .Must(roles =>
                 roles is null ||
-                (roles.Any() && roles.All(role => Roles.Contains(role))))
+                (roles.Any() &&
+                roles.All(role => Roles.Contains(role, StringComparer.OrdinalIgnoreCase))
+                ))
             .WithMessage("One or more roles are invalid.");
     }
 }

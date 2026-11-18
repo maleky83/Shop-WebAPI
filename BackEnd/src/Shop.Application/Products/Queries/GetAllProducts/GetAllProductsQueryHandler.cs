@@ -3,8 +3,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Shop.Application.Common;
+using Shop.Application.Interfaces.Repositories;
 using Shop.Application.Products.Dtos;
-using Shop.Application.Repositories;
 using Shop.Domain.Entities.Catalog;
 
 namespace Shop.Application.Products.Queries.GetAllProducts;

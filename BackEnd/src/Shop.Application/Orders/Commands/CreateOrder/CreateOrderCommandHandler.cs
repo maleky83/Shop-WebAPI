@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Shop.Application.Repositories.Shopping;
+using Shop.Application.Interfaces.Repositories.Shopping;
 using Shop.Domain.Entities.Carts;
 using Shop.Domain.Entities.Orders;
 using Shop.Domain.Enums;

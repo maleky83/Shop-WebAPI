@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Shop.Application.Repositories;
+using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Exceptions;
 

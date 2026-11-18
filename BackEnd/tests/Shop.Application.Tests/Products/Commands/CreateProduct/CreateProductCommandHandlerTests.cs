@@ -3,9 +3,9 @@ using FluentAssertions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Shop.Application.Interfaces.Repositories;
 using Shop.Application.Products.Commands.CreateProduct;
 using Shop.Application.Products.Dtos;
-using Shop.Application.Repositories;
 using Shop.Domain.Entities.Catalog;
 
 namespace Shop.Application.Tests.Products.Commands.CreateProduct;

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Constants;
-using Shop.Application.Repositories;
+using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
 using Shop.Infrastructure.Persistence;
 using System.Linq.Expressions;
