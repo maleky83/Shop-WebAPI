@@ -1,16 +1,17 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Shop.Application.Interfaces;
 using Shop.Application.Interfaces.Repositories.Shopping;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Exceptions;
 
 namespace Shop.Application.CartItems.Commands.UpdateCartItem;
 
 public class UpdateCartItemCommandHandler(
     ILogger<UpdateCartItemCommandHandler> logger,
-    ICartItemRepository cartItemRepository,
-    IValidator<UpdateCartItemCommand> validator
+    ICartRepository cartRepository,
+    IValidator<UpdateCartItemCommand> validator,
+    IUnitOfWork unitOfWork
     ) : IRequestHandler<UpdateCartItemCommand>
 {
     public async Task Handle(UpdateCartItemCommand request, CancellationToken cancellationToken)
@@ -19,12 +20,11 @@ public class UpdateCartItemCommandHandler(
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        CartItem? cartItem = await cartItemRepository
-            .GetByIdAsync(request.CartItemId)
-            ?? throw new NotFoundException(nameof(CartItem), request.CartItemId.ToString());
+        Cart cart = await cartRepository.GetByUserIdAsync(request.UserId, cancellationToken)
+            ?? throw new NotFoundException(nameof(Cart), request.UserId);
 
-        cartItem.Quantity = request.Quantity;
+        cart.UpdateItem(request.CartItemId, request.Quantity);
 
-        await cartItemRepository.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

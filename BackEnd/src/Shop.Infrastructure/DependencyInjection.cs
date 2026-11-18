@@ -10,8 +10,8 @@ using Shop.Domain.Entities;
 using Shop.Infrastructure.Authorization;
 using Shop.Infrastructure.Common;
 using Shop.Infrastructure.Persistence;
-using Shop.Infrastructure.Repositories;
-using Shop.Infrastructure.Repositories.Shopping;
+using Shop.Infrastructure.Persistence.Repositories;
+using Shop.Infrastructure.Persistence.Repositories.Shopping;
 using Shop.Infrastructure.Seeders;
 using Shop.Infrastructure.Users;
 
@@ -37,11 +37,11 @@ public static class DependencyInjection
         services.AddScoped<IShopSeeder, ShopSeeder>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<ICartRepository, CartRepository>();
-        services.AddScoped<ICartItemRepository, CartItemRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<IProductImageStorage, ProductImageStorage>();
         services.AddScoped<IUserContext, UserContext>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IProductImageStorage, ProductImageStorage>();
 
         services.AddHttpContextAccessor();
     }

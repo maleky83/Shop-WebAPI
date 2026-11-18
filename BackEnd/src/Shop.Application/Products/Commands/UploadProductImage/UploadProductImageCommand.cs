@@ -1,10 +1,8 @@
 using MediatR;
 
-namespace Shop.Application.Products.Commands.UploadProductImage;
-
-public sealed record UploadProductImageCommand(
+public record UploadProductImageCommand(
     int ProductId,
-    Stream Content,
+    Stream FileStream,
     string FileName,
-    long Length
+    long FileSize
 ) : IRequest<string>;

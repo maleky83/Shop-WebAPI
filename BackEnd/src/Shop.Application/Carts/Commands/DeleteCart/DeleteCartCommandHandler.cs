@@ -1,7 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Shop.Application.Interfaces.Repositories.Shopping;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Carts.Commands.DeleteCart;
@@ -15,7 +14,7 @@ public class DeleteCartCommandHandler(
     {
         logger.LogInformation("Deleting cart user {UserId}", request.UserId);
 
-        Cart? cart = await cartRepository.GetByUserIdAsync(request.UserId)
+        Cart? cart = await cartRepository.GetByUserIdAsync(request.UserId, cancellationToken)
             ?? throw new NotFoundException(nameof(Cart), "there isn't cart for delete");
 
         await cartRepository.DeleteAsync(cart);

@@ -1,6 +1,6 @@
 namespace Shop.Domain.Entities.Catalog;
 
-public sealed class Category
+public class Category
 {
     public int Id { get; set; }
     public DateTime CreatedAt { get; set; }

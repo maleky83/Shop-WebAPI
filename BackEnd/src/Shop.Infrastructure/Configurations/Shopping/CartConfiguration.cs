@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Shop.Domain.Entities.Carts;
 
 namespace Shop.Infrastructure.Configurations.Shopping;
 
-public sealed class CartConfiguration : IEntityTypeConfiguration<Cart>
+public class CartConfiguration : IEntityTypeConfiguration<Cart>
 {
     public void Configure(EntityTypeBuilder<Cart> builder)
     {

@@ -20,8 +20,18 @@ public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContex
             return null;
         }
 
-        var userId = user.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-        var email = user.FindFirst(ClaimTypes.Email)!.Value;
+        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (userId is null)
+            throw new UnauthorizedAccessException();
+
+        var email = user.FindFirstValue(ClaimTypes.Email);
+
+        if (email is null)
+        {
+            throw new UnauthorizedAccessException();
+        }
+
         IEnumerable<string> roles = user
             .Claims
             .Where(c => c.Type == ClaimTypes.Role)!

@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Domain.Entities;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Entities.Orders;
 using Shop.Infrastructure.Data;
 
 namespace Shop.Infrastructure.Persistence;
 
-internal class ShopDbContext(DbContextOptions<ShopDbContext> options) :
+public class ShopDbContext(DbContextOptions<ShopDbContext> options) :
     IdentityDbContext<User>(options)
 {
     #region Product

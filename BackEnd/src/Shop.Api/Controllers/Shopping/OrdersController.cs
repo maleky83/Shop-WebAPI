@@ -12,7 +12,7 @@ namespace Shop.Api.Controllers.Shopping;
 [ApiController]
 [Route("orders")]
 [Authorize]
-public sealed class OrdersController(IMediator mediator, IUserContext userContext) : ControllerBase
+public class OrdersController(IMediator mediator, IUserContext userContext) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()

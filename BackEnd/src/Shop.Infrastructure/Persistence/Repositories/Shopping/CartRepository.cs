@@ -1,13 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Interfaces.Repositories.Shopping;
-using Shop.Domain.Entities.Carts;
-using Shop.Infrastructure.Persistence;
 
-namespace Shop.Infrastructure.Repositories.Shopping;
+namespace Shop.Infrastructure.Persistence.Repositories.Shopping;
 
 internal class CartRepository(ShopDbContext dbContext) : ICartRepository
 {
-    public async Task<Cart?> GetByUserIdAsync(string userId)
+    public async Task<Cart?> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
     {
         Cart? cart = await dbContext.Carts
          .Include(c => c.CartItems)

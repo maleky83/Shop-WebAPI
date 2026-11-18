@@ -11,7 +11,7 @@ namespace Shop.Api.Controllers.Shopping;
 [ApiController]
 [Route("cartItems")]
 [Authorize]
-public sealed class CartItemsController(
+public class CartItemsController(
     IMediator mediator, IUserContext userContext
     ) : ControllerBase
 {

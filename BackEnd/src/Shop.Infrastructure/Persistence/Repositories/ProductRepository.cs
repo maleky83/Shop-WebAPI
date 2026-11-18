@@ -2,10 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Application.Constants;
 using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
-using Shop.Infrastructure.Persistence;
 using System.Linq.Expressions;
 
-namespace Shop.Infrastructure.Repositories;
+namespace Shop.Infrastructure.Persistence.Repositories;
 
 internal class ProductRepository(ShopDbContext dbContext) : IProductRepository
 {
@@ -74,18 +73,11 @@ internal class ProductRepository(ShopDbContext dbContext) : IProductRepository
     public async Task DeleteAsync(Product entity)
     {
         dbContext.Products.Remove(entity);
-        await dbContext.SaveChangesAsync();
     }
 
-    public async Task SaveChangesAsync()
-    {
-        await dbContext.SaveChangesAsync();
-    }
-
-    public async Task<Product> AddAsync(Product entity)
+    public async Task<Product> CreateAsync(Product entity)
     {
         await dbContext.AddAsync(entity);
-        await dbContext.SaveChangesAsync();
         return entity;
     }
 }

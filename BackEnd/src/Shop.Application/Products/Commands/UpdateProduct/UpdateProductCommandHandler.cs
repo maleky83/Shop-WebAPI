@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Shop.Application.Interfaces;
 using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Exceptions;
@@ -12,6 +13,7 @@ public class UpdateProductCommandHandler(
     ILogger<UpdateProductCommandHandler> logger,
     IMapper mapper,
     IProductRepository productRepository,
+    IUnitOfWork unitOfWork,
     IValidator<UpdateProductCommand> validator
     ) : IRequestHandler<UpdateProductCommand>
 {
@@ -28,6 +30,6 @@ public class UpdateProductCommandHandler(
 
         mapper.Map(request, product);
 
-        await productRepository.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
     }
 }

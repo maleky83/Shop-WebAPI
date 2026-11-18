@@ -8,9 +8,10 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Products.Commands.UploadProductImage;
 
-public sealed class UploadProductImageCommandHandler(
+public class UploadProductImageCommandHandler(
     ILogger<UploadProductImageCommandHandler> logger,
     IProductRepository productRepository,
+    IUnitOfWork unitOfWork,
     IProductImageStorage storage,
     IValidator<UploadProductImageCommand> validator
     )
@@ -31,13 +32,12 @@ public sealed class UploadProductImageCommandHandler(
                 request.ProductId.ToString());
 
         var imageUrl = await storage.SaveAsync(
-            request.Content,
             request.FileName,
             cancellationToken);
 
         product.ImageUrl = imageUrl;
 
-        await productRepository.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return imageUrl;
     }

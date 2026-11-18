@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Shop.Application.Interfaces;
 using Shop.Application.Interfaces.Repositories;
 using Shop.Application.Products.Dtos;
 using Shop.Domain.Entities.Catalog;
@@ -14,6 +15,7 @@ public class CreateProductCommandHandler(
     ILogger<CreateProductCommandHandler> logger,
     IProductRepository productRepository,
     ICategoryRepository categoryRepository,
+    IUnitOfWork unitOfWork,
     IValidator<CreateProductCommand> validator
     ) : IRequestHandler<CreateProductCommand, ProductDto>
 {
@@ -30,7 +32,9 @@ public class CreateProductCommandHandler(
 
         Product entity = mapper.Map<Product>(request);
 
-        Product product = await productRepository.AddAsync(entity);
+        Product product = await productRepository.CreateAsync(entity);
+
+        await unitOfWork.SaveChangesAsync();
 
         return mapper.Map<ProductDto>(product);
     }

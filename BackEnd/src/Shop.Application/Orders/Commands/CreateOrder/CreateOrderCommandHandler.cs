@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Shop.Application.Interfaces;
 using Shop.Application.Interfaces.Repositories.Shopping;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Entities.Orders;
 using Shop.Domain.Enums;
 using Shop.Domain.Exceptions;
@@ -11,6 +11,7 @@ namespace Shop.Application.Orders.Commands.CreateOrder;
 public class CreateOrderCommandHandler(
     ILogger<CreateOrderCommandHandler> logger,
     IOrderRepository orderRepository,
+    IUnitOfWork unitOfWork,
     ICartRepository cartRepository
     ) : IRequestHandler<CreateOrderCommand, int>
 {
@@ -18,7 +19,7 @@ public class CreateOrderCommandHandler(
     {
         logger.LogInformation("Creating order for user {UserId}", request.UserId);
 
-        Cart? cart = await cartRepository.GetByUserIdAsync(request.UserId)
+        Cart? cart = await cartRepository.GetByUserIdAsync(request.UserId, cancellationToken)
             ?? throw new NotFoundException(nameof(Cart), "there isn't cart for order");
 
         var order = new Order
@@ -30,19 +31,18 @@ public class CreateOrderCommandHandler(
 
         foreach (CartItem cartItem in cart.CartItems)
         {
-            var orderDetail = new OrderDetail
-            {
-                Price = cartItem.Product.Price,
-                ProductId = cartItem.ProductId,
-                Quantity = cartItem.Quantity,
-                TotalPrice = cartItem.Quantity * cartItem.Product.Price,
-            };
-
-            order.OrderDetails.Add(orderDetail);
+            order.AddItem(
+                cartItem.Product,
+                cartItem.Quantity);
         }
 
-        order.TotalPrice = order.OrderDetails.Sum(od => od.TotalPrice);
+        await orderRepository.AddAsync(
+            order,
+            cancellationToken);
 
-        return await orderRepository.CreateAsync(order);
+        await unitOfWork.SaveChangesAsync(
+            cancellationToken);
+
+        return order.Id;
     }
 }

@@ -6,7 +6,6 @@ using Shop.Application.Constants;
 using Shop.Application.Products.Commands.CreateProduct;
 using Shop.Application.Products.Commands.DeleteProduct;
 using Shop.Application.Products.Commands.UpdateProduct;
-using Shop.Application.Products.Commands.UploadProductImage;
 using Shop.Application.Products.Dtos;
 using Shop.Application.Products.Queries.GetAllProducts;
 using Shop.Application.Products.Queries.GetProductById;
@@ -71,17 +70,18 @@ public class ProductsController(
     }
 
     [HttpPost("{id:int}/image")]
+    [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> UploadProductImage(
-    int id,
+    [FromRoute] int id,
     IFormFile file,
     CancellationToken cancellationToken)
     {
-        if (file is null || file.Length == 0)
-            return BadRequest("select image");
+        if (file is null)
+            return BadRequest("Image file is required.");
 
         await using Stream stream = file.OpenReadStream();
 
-        var imageUrl = await mediator.Send(
+        string imageUrl = await mediator.Send(
             new UploadProductImageCommand(
                 id,
                 stream,
@@ -89,7 +89,10 @@ public class ProductsController(
                 file.Length),
             cancellationToken);
 
-        return Ok(new { imageUrl });
+        return Ok(new
+        {
+            imageUrl
+        });
     }
 
 }

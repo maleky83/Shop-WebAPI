@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Shop.Application.Carts.Dtos;
 using Shop.Application.Interfaces.Repositories.Shopping;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Exceptions;
 
 namespace Shop.Application.Carts.Queries.GetCartById;
@@ -18,7 +17,7 @@ public class GetCartByIdQueryHandler(
     {
         logger.LogInformation("Getting cart for user {UserId}", request.UserId);
 
-        Cart cart = await cartRepository.GetByUserIdAsync(request.UserId)
+        Cart cart = await cartRepository.GetByUserIdAsync(request.UserId, cancellationToken)
             ?? throw new NotFoundException(nameof(Cart), "please add product first");
 
         return mapper.Map<CartDto>(cart);

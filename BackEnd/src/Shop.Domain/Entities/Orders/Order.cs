@@ -1,9 +1,33 @@
+using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Enums;
 
 namespace Shop.Domain.Entities.Orders;
 
 public class Order
 {
+    private readonly List<OrderDetail> _orderDetails = [];
+
+    public IReadOnlyCollection<OrderDetail> OrderDetails =>
+        _orderDetails;
+
+    public decimal TotalPrice =>
+        _orderDetails.Sum(x => x.TotalPrice);
+
+    public void AddItem(
+        Product product,
+        int quantity)
+    {
+        var detail = new OrderDetail
+        {
+            ProductId = product.Id,
+            ProductName = product.Name,
+            Price = product.Price,
+            Quantity = quantity,
+            TotalPrice = product.Price * quantity
+        };
+
+        _orderDetails.Add(detail);
+    }
     public int Id { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -14,7 +38,4 @@ public class Order
 
     public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
-    public decimal TotalPrice { get; set; }
-
-    public List<OrderDetail> OrderDetails { get; set; } = [];
 }

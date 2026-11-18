@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Shop.Application.Interfaces;
 using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Exceptions;
@@ -8,7 +9,8 @@ namespace Shop.Application.Products.Commands.DeleteProduct;
 
 public class DeleteProductCommandHandler(
     ILogger<DeleteProductCommandHandler> logger,
-    IProductRepository productRepository
+    IProductRepository productRepository,
+    IUnitOfWork unitOfWork
     ) : IRequestHandler<DeleteProductCommand>
 {
     public async Task Handle(
@@ -21,5 +23,7 @@ public class DeleteProductCommandHandler(
             ?? throw new NotFoundException(nameof(Product), request.Id.ToString());
 
         await productRepository.DeleteAsync(product);
+
+        await unitOfWork.SaveChangesAsync();
     }
 }

@@ -4,7 +4,7 @@ using Shop.Domain.Entities.Orders;
 
 namespace Shop.Infrastructure.Configurations.Shopping;
 
-public sealed class OrderDetailConfiguration : IEntityTypeConfiguration<OrderDetail>
+public class OrderDetailConfiguration : IEntityTypeConfiguration<OrderDetail>
 {
     public void Configure(EntityTypeBuilder<OrderDetail> builder)
     {

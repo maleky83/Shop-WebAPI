@@ -1,16 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Interfaces.Repositories.Shopping;
 using Shop.Domain.Entities.Orders;
-using Shop.Infrastructure.Persistence;
 
-namespace Shop.Infrastructure.Repositories.Shopping;
+namespace Shop.Infrastructure.Persistence.Repositories.Shopping;
 
 internal class OrderRepository(ShopDbContext dbContext) : IOrderRepository
 {
-    public async Task<int> CreateAsync(Order entity)
+    public async Task<int> AddAsync(Order entity, CancellationToken cancellationToken = default)
     {
         await dbContext.Orders.AddAsync(entity);
-        await dbContext.SaveChangesAsync();
         return entity.Id;
     }
 

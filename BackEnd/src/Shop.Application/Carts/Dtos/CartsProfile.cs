@@ -1,5 +1,4 @@
 using AutoMapper;
-using Shop.Domain.Entities.Carts;
 
 namespace Shop.Application.Carts.Dtos;
 

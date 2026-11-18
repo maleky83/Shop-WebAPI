@@ -2,7 +2,7 @@ using Shop.Application.Interfaces;
 
 namespace Shop.Infrastructure.Common;
 
-public sealed class ProductImageStorage : IProductImageStorage
+public class ProductImageStorage : IProductImageStorage
 {
     private readonly string _imagesPath;
 
@@ -16,7 +16,6 @@ public sealed class ProductImageStorage : IProductImageStorage
     }
 
     public async Task<string> SaveAsync(
-        Stream content,
         string fileName,
         CancellationToken cancellationToken)
     {
@@ -43,8 +42,6 @@ public sealed class ProductImageStorage : IProductImageStorage
             FileShare.None,
             81920,
             useAsync: true);
-
-        await content.CopyToAsync(fileStream, cancellationToken);
 
         return $"/images/products/{newFileName}";
     }

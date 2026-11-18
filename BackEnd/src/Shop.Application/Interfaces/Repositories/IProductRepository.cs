@@ -5,7 +5,7 @@ namespace Shop.Application.Interfaces.Repositories;
 
 public interface IProductRepository
 {
-    Task<Product> AddAsync(Product entity);
+    Task<Product> CreateAsync(Product entity);
     Task DeleteAsync(Product entity);
     Task<IEnumerable<Product>> GetAllAsync();
     Task<(IEnumerable<Product>, int)> GetAllMatchingAsync(
@@ -16,5 +16,4 @@ public interface IProductRepository
         SortDirection sortDirection
         );
     Task<Product?> GetByIdAsync(int id);
-    Task SaveChangesAsync();
 }

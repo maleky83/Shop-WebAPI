@@ -1,5 +1,5 @@
-using FluentValidation;
 using Shop.Domain.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shop.Api.Middlewares;
 

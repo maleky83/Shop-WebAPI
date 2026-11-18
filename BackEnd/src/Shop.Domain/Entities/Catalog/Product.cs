@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Shop.Domain.Entities.Carts;
 using Shop.Domain.Entities.Orders;
 
 namespace Shop.Domain.Entities.Catalog;
 
-public sealed class Product
+public class Product
 {
     public int Id { get; set; }
     public DateTime CreatedAt { get; set; }

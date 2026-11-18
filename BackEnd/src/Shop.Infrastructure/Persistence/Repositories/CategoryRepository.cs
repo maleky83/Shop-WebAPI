@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Application.Interfaces.Repositories;
 using Shop.Domain.Entities.Catalog;
-using Shop.Infrastructure.Persistence;
 
-namespace Shop.Infrastructure.Repositories;
+namespace Shop.Infrastructure.Persistence.Repositories;
 
 internal class CategoryRepository(ShopDbContext dbContext) : ICategoryRepository
 {

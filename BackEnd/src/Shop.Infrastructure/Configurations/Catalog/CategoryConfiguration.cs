@@ -4,7 +4,7 @@ using Shop.Domain.Entities.Catalog;
 
 namespace Shop.Infrastructure.Configurations.Catalog;
 
-public sealed class CategoryConfiguration : IEntityTypeConfiguration<Category>
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {

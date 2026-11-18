@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using Shop.Domain.Entities.Carts;
 
 namespace Shop.Domain.Entities;
 

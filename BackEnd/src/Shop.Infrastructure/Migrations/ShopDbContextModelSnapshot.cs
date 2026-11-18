@@ -8,692 +8,691 @@ using Shop.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace Shop.Infrastructure.Migrations
+namespace Shop.Infrastructure.Migrations;
+
+[DbContext(typeof(ShopDbContext))]
+partial class ShopDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(ShopDbContext))]
-    partial class ShopDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.14")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "10.0.14")
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            {
+                b.Property<string>("Id")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("Name")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("NormalizedName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                b.HasIndex("NormalizedName")
+                    .IsUnique()
+                    .HasDatabaseName("RoleNameIndex")
+                    .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
-                });
+                b.ToTable("AspNetRoles", (string)null);
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("RoleId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
-                });
+                b.ToTable("AspNetRoleClaims", (string)null);
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("UserId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
+                b.ToTable("AspNetUserClaims", (string)null);
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            {
+                b.Property<string>("LoginProvider")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("ProviderKey")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ProviderDisplayName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("UserId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
+                b.ToTable("AspNetUserLogins", (string)null);
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            {
+                b.Property<string>("UserId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("RoleId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId", "RoleId");
+                b.HasKey("UserId", "RoleId");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
+                b.ToTable("AspNetUserRoles", (string)null);
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            {
+                b.Property<string>("UserId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("LoginProvider")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("Name")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Value")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
-                });
+                b.ToTable("AspNetUserTokens", (string)null);
+            });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("UserId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                b.HasIndex("UserId")
+                    .IsUnique();
 
-                    b.ToTable("Carts");
-                });
+                b.ToTable("Carts");
+            });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Carts.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Shop.Domain.Entities.Carts.CartItem", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
+                b.Property<int>("CartId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                b.Property<decimal>("Price")
+                    .HasPrecision(18, 2)
+                    .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                b.Property<int>("ProductId")
+                    .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CartId");
+                b.HasIndex("CartId");
 
-                    b.HasIndex("ProductId", "CartId")
-                        .IsUnique();
+                b.HasIndex("ProductId", "CartId")
+                    .IsUnique();
 
-                    b.ToTable("CartItems");
-                });
+                b.ToTable("CartItems");
+            });
 
-            modelBuilder.Entity("Shop.Domain.Entities.Catalog.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Shop.Domain.Entities.Catalog.Category", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Name = "men"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Name = "women"
-                        });
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 1, 5, 10, 30, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A premium black jacket with a modern fit, perfect for everyday wear and cold weather.",
-                            ImageUrl = "/images/men/mens_jacket.jpg",
-                            IsActive = true,
-                            Name = "Men's Classic Black Jacket",
-                            Price = 89.99m,
-                            Quantity = 12
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 1, 8, 14, 15, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Lightweight running shoes featuring breathable materials and excellent support for daily workouts.",
-                            ImageUrl = "/images/men/mens_shoes.jpg",
-                            IsActive = true,
-                            Name = "Men's Performance Running Shoes",
-                            Price = 79.99m,
-                            Quantity = 18
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 1, 8, 16, 45, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A comfortable cotton graphic T-shirt designed for casual outfits and everyday activities.",
-                            ImageUrl = "/images/men/mens_tee.jpg",
-                            IsActive = true,
-                            Name = "Men's Urban Graphic T-Shirt",
-                            Price = 24.99m,
-                            Quantity = 35
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 1, 12, 11, 20, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Minimalist white sneakers combining a clean design with all-day comfort.",
-                            ImageUrl = "/images/men/mens_sneaker.jpg",
-                            IsActive = true,
-                            Name = "Men's Everyday White Sneakers",
-                            Price = 64.99m,
-                            Quantity = 22
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 1, 6, 9, 15, 0, 0, DateTimeKind.Unspecified),
-                            Description = "An elegant lightweight floral dress, perfect for summer outings and casual occasions.",
-                            ImageUrl = "/images/women/womens_dress.jpg",
-                            IsActive = true,
-                            Name = "Women's Floral Summer Dress",
-                            Price = 69.99m,
-                            Quantity = 16
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 1, 10, 13, 40, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A stylish leather handbag with a spacious interior and practical compartments for everyday essentials.",
-                            ImageUrl = "/images/women/womens_bag.jpg",
-                            IsActive = true,
-                            Name = "Women's Premium Leather Handbag",
-                            Price = 109.99m,
-                            Quantity = 9
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 1, 10, 17, 25, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A durable and spacious canvas tote bag suitable for shopping, work, and everyday use.",
-                            ImageUrl = "/images/women/womens_tote.jpg",
-                            IsActive = true,
-                            Name = "Women's Everyday Canvas Tote",
-                            Price = 34.99m,
-                            Quantity = 28
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 1, 15, 12, 10, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Fashionable street-style sneakers designed to provide comfort and versatility throughout the day.",
-                            ImageUrl = "/images/women/womens_sneaker.jpg",
-                            IsActive = true,
-                            Name = "Women's Modern Street Sneakers",
-                            Price = 74.99m,
-                            Quantity = 14
-                        });
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Orders.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetail");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly?>("DateOfBirth")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Nationality")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shop.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.User", "User")
-                        .WithOne("Cart")
-                        .HasForeignKey("Shop.Domain.Entities.Carts.Cart", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Carts.CartItem", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.Carts.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shop.Domain.Entities.Catalog.Product", "Product")
-                        .WithMany("CartItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.Catalog.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Orders.OrderDetail", b =>
-                {
-                    b.HasOne("Shop.Domain.Entities.Orders.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shop.Domain.Entities.Catalog.Product", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.Navigation("CartItems");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Catalog.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
-                {
-                    b.Navigation("CartItems");
-
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("Shop.Domain.Entities.User", b =>
-                {
-                    b.Navigation("Cart");
-
-                    b.Navigation("Orders");
-                });
+                b.HasIndex("Name")
+                    .IsUnique();
+
+                b.ToTable("Categories");
+
+                b.HasData(
+                    new
+                    {
+                        Id = 1,
+                        CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                        IsActive = true,
+                        Name = "men"
+                    },
+                    new
+                    {
+                        Id = 2,
+                        CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                        IsActive = true,
+                        Name = "women"
+                    });
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<int>("CategoryId")
+                    .HasColumnType("int");
+
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("ImageUrl")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<decimal>("Price")
+                    .HasPrecision(18, 2)
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("CategoryId");
+
+                b.HasIndex("Name")
+                    .IsUnique();
+
+                b.ToTable("Products");
+
+                b.HasData(
+                    new
+                    {
+                        Id = 1,
+                        CategoryId = 1,
+                        CreatedAt = new DateTime(2026, 1, 5, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                        Description = "A premium black jacket with a modern fit, perfect for everyday wear and cold weather.",
+                        ImageUrl = "/images/men/mens_jacket.jpg",
+                        IsActive = true,
+                        Name = "Men's Classic Black Jacket",
+                        Price = 89.99m,
+                        Quantity = 12
+                    },
+                    new
+                    {
+                        Id = 2,
+                        CategoryId = 1,
+                        CreatedAt = new DateTime(2026, 1, 8, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                        Description = "Lightweight running shoes featuring breathable materials and excellent support for daily workouts.",
+                        ImageUrl = "/images/men/mens_shoes.jpg",
+                        IsActive = true,
+                        Name = "Men's Performance Running Shoes",
+                        Price = 79.99m,
+                        Quantity = 18
+                    },
+                    new
+                    {
+                        Id = 3,
+                        CategoryId = 1,
+                        CreatedAt = new DateTime(2026, 1, 8, 16, 45, 0, 0, DateTimeKind.Unspecified),
+                        Description = "A comfortable cotton graphic T-shirt designed for casual outfits and everyday activities.",
+                        ImageUrl = "/images/men/mens_tee.jpg",
+                        IsActive = true,
+                        Name = "Men's Urban Graphic T-Shirt",
+                        Price = 24.99m,
+                        Quantity = 35
+                    },
+                    new
+                    {
+                        Id = 4,
+                        CategoryId = 1,
+                        CreatedAt = new DateTime(2026, 1, 12, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                        Description = "Minimalist white sneakers combining a clean design with all-day comfort.",
+                        ImageUrl = "/images/men/mens_sneaker.jpg",
+                        IsActive = true,
+                        Name = "Men's Everyday White Sneakers",
+                        Price = 64.99m,
+                        Quantity = 22
+                    },
+                    new
+                    {
+                        Id = 5,
+                        CategoryId = 2,
+                        CreatedAt = new DateTime(2026, 1, 6, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                        Description = "An elegant lightweight floral dress, perfect for summer outings and casual occasions.",
+                        ImageUrl = "/images/women/womens_dress.jpg",
+                        IsActive = true,
+                        Name = "Women's Floral Summer Dress",
+                        Price = 69.99m,
+                        Quantity = 16
+                    },
+                    new
+                    {
+                        Id = 6,
+                        CategoryId = 2,
+                        CreatedAt = new DateTime(2026, 1, 10, 13, 40, 0, 0, DateTimeKind.Unspecified),
+                        Description = "A stylish leather handbag with a spacious interior and practical compartments for everyday essentials.",
+                        ImageUrl = "/images/women/womens_bag.jpg",
+                        IsActive = true,
+                        Name = "Women's Premium Leather Handbag",
+                        Price = 109.99m,
+                        Quantity = 9
+                    },
+                    new
+                    {
+                        Id = 7,
+                        CategoryId = 2,
+                        CreatedAt = new DateTime(2026, 1, 10, 17, 25, 0, 0, DateTimeKind.Unspecified),
+                        Description = "A durable and spacious canvas tote bag suitable for shopping, work, and everyday use.",
+                        ImageUrl = "/images/women/womens_tote.jpg",
+                        IsActive = true,
+                        Name = "Women's Everyday Canvas Tote",
+                        Price = 34.99m,
+                        Quantity = 28
+                    },
+                    new
+                    {
+                        Id = 8,
+                        CategoryId = 2,
+                        CreatedAt = new DateTime(2026, 1, 15, 12, 10, 0, 0, DateTimeKind.Unspecified),
+                        Description = "Fashionable street-style sneakers designed to provide comfort and versatility throughout the day.",
+                        ImageUrl = "/images/women/womens_sneaker.jpg",
+                        IsActive = true,
+                        Name = "Women's Modern Street Sneakers",
+                        Price = 74.99m,
+                        Quantity = 14
+                    });
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("datetime2");
+
+                b.Property<int>("Status")
+                    .HasColumnType("int");
+
+                b.Property<decimal>("TotalPrice")
+                    .HasPrecision(18, 2)
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<string>("UserId")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(450)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("Orders");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Orders.OrderDetail", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<string>("ImageUrl")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("OrderId")
+                    .HasColumnType("int");
+
+                b.Property<decimal>("Price")
+                    .HasPrecision(18, 2)
+                    .HasColumnType("decimal(18,2)");
+
+                b.Property<int>("ProductId")
+                    .HasColumnType("int");
+
+                b.Property<string>("ProductName")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
+
+                b.Property<decimal>("TotalPrice")
+                    .HasPrecision(18, 2)
+                    .HasColumnType("decimal(18,2)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("OrderId");
+
+                b.HasIndex("ProductId");
+
+                b.ToTable("OrderDetail");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.User", b =>
+            {
+                b.Property<string>("Id")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<int>("AccessFailedCount")
+                    .HasColumnType("int");
+
+                b.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<DateOnly?>("DateOfBirth")
+                    .HasColumnType("date");
+
+                b.Property<string>("Email")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                b.Property<bool>("EmailConfirmed")
+                    .HasColumnType("bit");
+
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
+
+                b.Property<bool>("LockoutEnabled")
+                    .HasColumnType("bit");
+
+                b.Property<DateTimeOffset?>("LockoutEnd")
+                    .HasColumnType("datetimeoffset");
+
+                b.Property<string>("Nationality")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("NormalizedEmail")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                b.Property<string>("NormalizedUserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                b.Property<string>("PasswordHash")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("PhoneNumber")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("PhoneNumberConfirmed")
+                    .HasColumnType("bit");
+
+                b.Property<string>("SecurityStamp")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("TwoFactorEnabled")
+                    .HasColumnType("bit");
+
+                b.Property<string>("UserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("NormalizedEmail")
+                    .HasDatabaseName("EmailIndex");
+
+                b.HasIndex("NormalizedUserName")
+                    .IsUnique()
+                    .HasDatabaseName("UserNameIndex")
+                    .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                b.ToTable("AspNetUsers", (string)null);
+            });
+
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            {
+                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            {
+                b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("Shop.Domain.Entities.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.User", "User")
+                    .WithOne("Cart")
+                    .HasForeignKey("Shop.Domain.Entities.Carts.Cart", "UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("User");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Carts.CartItem", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.Carts.Cart", "Cart")
+                    .WithMany("CartItems")
+                    .HasForeignKey("CartId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("Shop.Domain.Entities.Catalog.Product", "Product")
+                    .WithMany("CartItems")
+                    .HasForeignKey("ProductId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Cart");
+
+                b.Navigation("Product");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.Catalog.Category", "Category")
+                    .WithMany("Products")
+                    .HasForeignKey("CategoryId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Category");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.User", "User")
+                    .WithMany("Orders")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
+
+                b.Navigation("User");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Orders.OrderDetail", b =>
+            {
+                b.HasOne("Shop.Domain.Entities.Orders.Order", "Order")
+                    .WithMany("OrderDetails")
+                    .HasForeignKey("OrderId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("Shop.Domain.Entities.Catalog.Product", "Product")
+                    .WithMany("OrderDetails")
+                    .HasForeignKey("ProductId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Order");
+
+                b.Navigation("Product");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Carts.Cart", b =>
+            {
+                b.Navigation("CartItems");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Catalog.Category", b =>
+            {
+                b.Navigation("Products");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Catalog.Product", b =>
+            {
+                b.Navigation("CartItems");
+
+                b.Navigation("OrderDetails");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.Orders.Order", b =>
+            {
+                b.Navigation("OrderDetails");
+            });
+
+        modelBuilder.Entity("Shop.Domain.Entities.User", b =>
+            {
+                b.Navigation("Cart");
+
+                b.Navigation("Orders");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

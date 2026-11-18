@@ -4,7 +4,7 @@ using Shop.Domain.Entities.Orders;
 
 namespace Shop.Infrastructure.Configurations.Shopping;
 
-public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
+public class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
@@ -21,5 +21,7 @@ public sealed class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.Property(o => o.TotalPrice)
             .HasPrecision(18, 2);
+
+        builder.Ignore(od => od.TotalPrice);
     }
 }
