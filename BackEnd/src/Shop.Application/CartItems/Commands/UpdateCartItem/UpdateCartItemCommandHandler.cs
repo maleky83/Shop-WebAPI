@@ -25,6 +25,6 @@ public class UpdateCartItemCommandHandler(
 
         cart.UpdateItem(request.CartItemId, request.Quantity);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

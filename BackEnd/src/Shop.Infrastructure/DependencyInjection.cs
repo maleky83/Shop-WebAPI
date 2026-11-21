@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,12 @@ public static class DependencyInjection
             .AddRoles<IdentityRole>()
             .AddClaimsPrincipalFactory<ShopUserClaimsPrincipalFactory>()
             .AddEntityFrameworkStores<ShopDbContext>();
+
+        services.Configure<BearerTokenOptions>(IdentityConstants.BearerScheme, options =>
+        {
+            options.BearerTokenExpiration = TimeSpan.FromDays(99);
+            options.RefreshTokenExpiration = TimeSpan.FromDays(99);
+        });
 
         services.AddScoped<IShopSeeder, ShopSeeder>();
         services.AddScoped<IOrderRepository, OrderRepository>();

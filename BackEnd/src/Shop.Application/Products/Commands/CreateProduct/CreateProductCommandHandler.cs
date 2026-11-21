@@ -32,7 +32,7 @@ public class CreateProductCommandHandler(
 
         Product entity = mapper.Map<Product>(request);
 
-        Product product = await productRepository.CreateAsync(entity);
+        Product product = productRepository.Create(entity);
 
         await unitOfWork.SaveChangesAsync();
 

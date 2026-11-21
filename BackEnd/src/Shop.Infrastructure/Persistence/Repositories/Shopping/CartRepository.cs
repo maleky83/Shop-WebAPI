@@ -10,7 +10,7 @@ internal class CartRepository(ShopDbContext dbContext) : ICartRepository
         Cart? cart = await dbContext.Carts
          .Include(c => c.CartItems)
          .ThenInclude(c => c.Product)
-         .FirstOrDefaultAsync(c => c.UserId == userId);
+         .FirstOrDefaultAsync(c => c.UserId == userId, cancellationToken);
 
         return cart;
     }
@@ -21,4 +21,8 @@ internal class CartRepository(ShopDbContext dbContext) : ICartRepository
         await dbContext.SaveChangesAsync();
     }
 
+    public async Task CreateAsync(Cart entity)
+    {
+        dbContext.Carts.Add(entity);
+    }
 }

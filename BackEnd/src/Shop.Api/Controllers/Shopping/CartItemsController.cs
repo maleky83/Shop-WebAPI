@@ -18,7 +18,7 @@ public class CartItemsController(
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult> CreateCartItem(
-       [FromBody] CreateCartItemCommand command)
+       [FromBody] AddCartItemCommand command)
     {
         CurrentUser? user = userContext.GetCurrentUser();
 

@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace Shop.Application.CartItems.Commands.CreateCartItem;
 
-public class CreateCartItemCommandValidator : AbstractValidator<CreateCartItemCommand>
+public class AddCartItemCommandValidator : AbstractValidator<AddCartItemCommand>
 {
-    public CreateCartItemCommandValidator()
+    public AddCartItemCommandValidator()
     {
         RuleFor(ci => ci.UserId)
             .NotEmpty();
