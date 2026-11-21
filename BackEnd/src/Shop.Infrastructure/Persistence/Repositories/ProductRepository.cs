@@ -75,9 +75,9 @@ internal class ProductRepository(ShopDbContext dbContext) : IProductRepository
         dbContext.Products.Remove(entity);
     }
 
-    public async Task<Product> CreateAsync(Product entity)
+    public Product Create(Product entity)
     {
-        await dbContext.AddAsync(entity);
+        dbContext.Add(entity);
         return entity;
     }
 }

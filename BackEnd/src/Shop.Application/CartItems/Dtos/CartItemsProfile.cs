@@ -7,7 +7,7 @@ public class CartItemsProfile : Profile
 {
     public CartItemsProfile()
     {
-        CreateMap<CreateCartItemCommand, CartItem>();
+        CreateMap<AddCartItemCommand, CartItem>();
 
         CreateMap<CartItem, CartItemDto>()
             .ForMember(dest => dest.CartItemId, opt =>

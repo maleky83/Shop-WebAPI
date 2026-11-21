@@ -36,7 +36,7 @@ public class CreateOrderCommandHandler(
                 cartItem.Quantity);
         }
 
-        await orderRepository.AddAsync(
+        await orderRepository.Add(
             order,
             cancellationToken);
 

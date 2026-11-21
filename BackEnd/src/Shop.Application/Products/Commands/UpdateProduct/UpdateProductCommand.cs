@@ -5,15 +5,15 @@ namespace Shop.Application.Products.Commands.UpdateProduct;
 public class UpdateProductCommand : IRequest
 {
     public int Id { get; set; }
-    public string Name { get; set; } = default!;
+    public string? Name { get; set; }
 
     public string? Description { get; set; }
 
-    public decimal Price { get; set; }
+    public decimal? Price { get; set; }
 
-    public int Quantity { get; set; }
+    public int? Quantity { get; set; }
 
     public bool IsActive { get; set; } = true;
 
-    public string CategoryId { get; set; } = default!;
+    public int? CategoryId { get; set; }
 }

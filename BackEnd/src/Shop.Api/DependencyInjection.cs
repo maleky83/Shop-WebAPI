@@ -1,5 +1,6 @@
 using Microsoft.OpenApi;
 using Serilog;
+using Shop.Api.Exceptions;
 using Shop.Api.Middlewares;
 
 namespace Shop.Api;
@@ -38,9 +39,8 @@ public static class DependencyInjection
 
         builder.Services.AddEndpointsApiExplorer();
 
-        builder.Services.AddScoped<ErrorHandlingMiddleware>();
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-
 
         builder.Services.AddOpenApi();
         builder.Services.AddProblemDetails();

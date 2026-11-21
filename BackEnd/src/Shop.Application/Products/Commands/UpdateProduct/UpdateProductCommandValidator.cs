@@ -7,6 +7,7 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
     public UpdateProductCommandValidator()
     {
         RuleFor(x => x.Name)
-            .Length(3, 100);
+            .Length(3, 100)
+            .When(x => !string.IsNullOrEmpty(x.Name));
     }
 }

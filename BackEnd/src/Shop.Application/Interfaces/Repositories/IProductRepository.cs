@@ -5,7 +5,7 @@ namespace Shop.Application.Interfaces.Repositories;
 
 public interface IProductRepository
 {
-    Task<Product> CreateAsync(Product entity);
+    Product Create(Product entity);
     Task DeleteAsync(Product entity);
     Task<IEnumerable<Product>> GetAllAsync();
     Task<(IEnumerable<Product>, int)> GetAllMatchingAsync(

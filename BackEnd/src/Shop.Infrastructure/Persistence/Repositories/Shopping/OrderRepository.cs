@@ -6,9 +6,9 @@ namespace Shop.Infrastructure.Persistence.Repositories.Shopping;
 
 internal class OrderRepository(ShopDbContext dbContext) : IOrderRepository
 {
-    public async Task<int> AddAsync(Order entity, CancellationToken cancellationToken = default)
+    public async Task<int> Add(Order entity, CancellationToken cancellationToken = default)
     {
-        await dbContext.Orders.AddAsync(entity);
+        dbContext.Orders.Add(entity);
         return entity.Id;
     }
 

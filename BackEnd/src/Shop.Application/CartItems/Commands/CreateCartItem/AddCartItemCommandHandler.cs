@@ -9,15 +9,15 @@ using Shop.Domain.Exceptions;
 
 namespace Shop.Application.CartItems.Commands.CreateCartItem;
 
-public class CreateCartItemCommandHandler(
-    ILogger<CreateCartItemCommandHandler> logger,
-    IValidator<CreateCartItemCommand> validator,
+public class AddCartItemCommandHandler(
+    ILogger<AddCartItemCommandHandler> logger,
+    IValidator<AddCartItemCommand> validator,
     IProductRepository productRepository,
     IUnitOfWork unitOfWork,
     ICartRepository cartRepository
-    ) : IRequestHandler<CreateCartItemCommand>
+    ) : IRequestHandler<AddCartItemCommand>
 {
-    public async Task Handle(CreateCartItemCommand request, CancellationToken cancellationToken)
+    public async Task Handle(AddCartItemCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating cartItem by user {UserId}", request.UserId);
 
@@ -26,13 +26,19 @@ public class CreateCartItemCommandHandler(
         Product product = await productRepository.GetByIdAsync(request.ProductId)
             ?? throw new NotFoundException(nameof(Product), request.ProductId.ToString());
 
-        Cart cart = await cartRepository.GetByUserIdAsync(
+        Cart? cart = await cartRepository.GetByUserIdAsync(
             request.UserId,
-            cancellationToken)
-            ?? new Cart
+            cancellationToken);
+
+        if (cart is null)
+        {
+            cart = new Cart
             {
                 UserId = request.UserId
             };
+
+            await cartRepository.CreateAsync(cart);
+        }
 
         cart.AddItem(product, request.Quantity);
 

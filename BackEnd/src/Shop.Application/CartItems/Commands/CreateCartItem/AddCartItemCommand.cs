@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Shop.Application.CartItems.Commands.CreateCartItem;
 
-public class CreateCartItemCommand : IRequest
+public class AddCartItemCommand : IRequest
 {
     public string UserId { get; set; } = string.Empty;
     public int ProductId { get; set; }

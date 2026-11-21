@@ -10,7 +10,9 @@ public class ProductsProfile : Profile
     public ProductsProfile()
     {
 
-        CreateMap<UpdateProductCommand, Product>();
+        CreateMap<UpdateProductCommand, Product>()
+            .ForAllMembers(opt =>
+                opt.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<CreateProductCommand, Product>();
 

@@ -1,7 +1,7 @@
+using FluentValidation;
 using Shop.Domain.Entities;
 using Shop.Domain.Entities.Catalog;
 using Shop.Domain.Exceptions;
-using System.ComponentModel.DataAnnotations;
 
 public class Cart
 {
@@ -22,15 +22,19 @@ public class Cart
                 "Quantity must be greater than zero.");
 
         CartItem? existingItem =
-            CartItems.FirstOrDefault(
-                x => x.ProductId == product.Id);
+            CartItems.FirstOrDefault(x => x.ProductId == product.Id);
 
         if (existingItem != null)
         {
+            product.DecreaseStock(quantity);
+
             existingItem.IncreaseQuantity(quantity);
             existingItem.Price = product.Price;
+
             return;
         }
+
+        product.DecreaseStock(quantity);
 
         CartItems.Add(new CartItem
         {
@@ -55,6 +59,17 @@ public class Cart
                 nameof(CartItem),
                 cartItemId.ToString());
 
+        int oldQuantity = item.Quantity;
+
+        if (quantity > oldQuantity)
+        {
+            item.Product.DecreaseStock(quantity - oldQuantity);
+        }
+        else if (quantity < oldQuantity)
+        {
+            item.Product.IncreaseStock(oldQuantity - quantity);
+        }
+
         item.ChangeQuantity(quantity);
     }
 
@@ -65,9 +80,11 @@ public class Cart
                 x => x.Id == cartItemId);
 
         if (item is null)
-            throw new ValidationException(
-                "Cart item was not found.");
+            throw new NotFoundException(
+                nameof(Cart), cartItemId.ToString());
 
         CartItems.Remove(item);
+
+        item.Product.IncreaseStock(item.Quantity);
     }
 }

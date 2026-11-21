@@ -1,5 +1,5 @@
 using Shop.Domain.Entities.Catalog;
-using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 public class CartItem
 {
